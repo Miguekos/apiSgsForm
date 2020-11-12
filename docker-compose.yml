@@ -1,0 +1,14 @@
+# docker-compose.yml
+version: "2"
+services:
+  api_cayman:
+    container_name: api_cayman
+#    image: api_cayman:1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python3 main.py
+    volumes:
+      - /usr/local/volumes/fileserver/cayman/:/app/fileserver/
+    ports:
+      - "9878:9878"
