@@ -1,11 +1,11 @@
-FROM python:3.6
+FROM python:3.6-alpine
 
 COPY . /app
 
 WORKDIR /app
 
-RUN pip install -r requeriment.txt
+RUN pip install -r requeriments.txt
 
-EXPOSE 9878
+EXPOSE 3434
 
 CMD [ "python" , "main.py" ]

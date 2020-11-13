@@ -1,14 +1,13 @@
 # docker-compose.yml
 version: "2"
 services:
-  api_cayman:
-    container_name: api_cayman
-#    image: api_cayman:1.0
+  api_sgs_form:
+    container_name: api_sgs_form
     build:
       context: .
       dockerfile: Dockerfile
     command: python3 main.py
     volumes:
-      - /usr/local/volumes/fileserver/cayman/:/app/fileserver/
+      - /usr/local/volumes/api_sgs_form/:/app/fileserver/
     ports:
-      - "9878:9878"
+      - "3434:3434"
