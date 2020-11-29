@@ -2,11 +2,14 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from mongo import mycol
 from woocomerce import wcapi
+
 app = Flask(__name__)
+
 
 @app.route('/sgsform', methods=["GET"])
 def hello_world():
     return "APIs SgsForm!"
+
 
 @app.route('/sgsform/add', methods=["POST"])
 def add_registro():
@@ -15,7 +18,7 @@ def add_registro():
     x = mycol.insert_one(_json)
     # print(x.inserted_id)
     result = str(x.inserted_id)
-    return { "_id" : result }
+    return {"_id": result}
 
 
 @app.route('/sgsform/get', methods=["GET"])
@@ -25,9 +28,10 @@ def get_registro():
         # print(x)
         x['_id'] = str(x["_id"])
         total.append(x)
-    return { "result" : total }
+    return {"result": total}
 
-@app.route('/ordenes/<limit>', methods=['GET'])
+
+@app.route('/sgsform/ordenes/<limit>', methods=['GET'])
 def woocommerce_ordenes(limit):
     # asd = wcapi.options("orders").json()
     # asd = wcapi.get("search").json()
@@ -38,13 +42,14 @@ def woocommerce_ordenes(limit):
     return jsonify(ordenes)
     # return "{}".format(asd)
 
-@app.route('/ordenes/<id>', methods=['GET'])
+
+@app.route('/sgsform/ordenes/<id>', methods=['GET'])
 def woocommerce_orden_id(id):
     asd = wcapi.get("orders/{}".format(id), params={"per_page": 100}).json()
     return jsonify(asd)
 
 
-@app.route('/customers/<limit>', methods=['GET'])
+@app.route('/sgsform/customers/<limit>', methods=['GET'])
 def woocommerce_customers(limit):
     # asd = wcapi.options("orders").json()
     # asd = wcapi.get("search").json()
@@ -55,12 +60,11 @@ def woocommerce_customers(limit):
     return jsonify(ordenes)
     # return "{}".format(asd)
 
-@app.route('/customers/id/<id>', methods=['GET'])
+
+@app.route('/sgsform/customers/id/<id>', methods=['GET'])
 def woocommerce_customers_id(id):
     asd = wcapi.get("customers/{}".format(id), params={"per_page": 100}).json()
     return jsonify(asd)
-
-
 
 
 if __name__ == '__main__':
