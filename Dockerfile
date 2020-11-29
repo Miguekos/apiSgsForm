@@ -1,10 +1,12 @@
 FROM python:3.6-alpine
 
-COPY . /app
-
 WORKDIR /app
 
+COPY [ "./requeriments.txt" , "/app" ]
+
 RUN pip install -r requeriments.txt
+
+COPY . /app
 
 EXPOSE 3434
 
