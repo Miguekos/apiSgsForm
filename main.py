@@ -43,9 +43,9 @@ def woocommerce_ordenes(limit):
     # return "{}".format(asd)
 
 
-@app.route('/sgsform/ordenes/<id>', methods=['GET'])
+@app.route('/sgsform/ordenes/id/<id>', methods=['GET'])
 def woocommerce_orden_id(id):
-    asd = wcapi.get("orders/{}".format(id), params={"per_page": 100}).json()
+    asd = wcapi.get("orders/{}".format(id)).json()
     return jsonify(asd)
 
 
