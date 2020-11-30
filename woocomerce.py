@@ -17,15 +17,27 @@ import json
 #    timeout=20
 #)
 
+# wcapi = API(
+#     url="https://ecommerce-2.apps.com.pe",
+#     consumer_key="ck_cc366d471878d25a89e7ccb0433ce5e4d9fe6faa",
+#     consumer_secret="cs_d5d87ee68630c3ca7abd3ceb8d5e18ee6301bc1e",
+#     wp_api=True, # Enable the WP REST API integration
+#     version="wc/v3"
+# )
+
 wcapi = API(
-    url="https://ecommerce-2.apps.com.pe",
-    consumer_key="ck_cc366d471878d25a89e7ccb0433ce5e4d9fe6faa",
-    consumer_secret="cs_d5d87ee68630c3ca7abd3ceb8d5e18ee6301bc1e",
+    url="https://sgsacademy.pe/",
+    consumer_key="ck_8837e4e56a60e6d3040375f6e7e9c0ba2e6ed8d0",
+    consumer_secret="cs_d2ebcbb32460abe15dc08a86ff77a340cc5ba825",
+    wp_api=True, # Enable the WP REST API integration
     version="wc/v3",
-    timeout=20
+    verify_ssl=False,
+    timeout=20,
+    query_string_auth=False,
+
 )
 
-# print(wcapi.get("products").json())
+print(wcapi.get("products").json())
 
 # try:
 #     asd = wcapi.get("customers").json()
