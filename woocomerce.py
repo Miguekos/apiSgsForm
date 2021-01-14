@@ -37,7 +37,7 @@ wcapi = API(
 
 )
 
-print(wcapi.get("products").json())
+# print(wcapi.get("settings").json())
 
 # try:
 #     asd = wcapi.get("customers").json()
