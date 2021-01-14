@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
-from mongo import mycol
+from mongo import mycol, mycolDepart, mycolProvin, mycolDistri
 from woocomerce import wcapi
 
 app = Flask(__name__)
@@ -9,6 +9,33 @@ app = Flask(__name__)
 @app.route('/sgsform', methods=["GET"])
 def hello_world():
     return "APIs SgsForm!"
+
+
+@app.route('/sgsform/depart', methods=["GET"])
+def depart():
+    total = []
+    for x in mycolDepart.find():
+        x['_id'] = str(x["_id"])
+        total.append(x)
+    return {"result": total}
+
+
+@app.route('/sgsform/provin/<id>', methods=["GET"])
+def provinc(id):
+    total = []
+    for x in mycolProvin.find({"department_id": "{}".format(id)}):
+        x['_id'] = str(x["_id"])
+        total.append(x)
+    return {"result": total}
+
+
+@app.route('/sgsform/distri/<id>', methods=["GET"])
+def distrio(id):
+    total = []
+    for x in mycolDistri.find({"province_id": "{}".format(id)}):
+        x['_id'] = str(x["_id"])
+        total.append(x)
+    return {"result": total}
 
 
 @app.route('/sgsform/add', methods=["POST"])
